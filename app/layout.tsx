@@ -7,9 +7,10 @@ import { cn } from "@/lib/utils";
 
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ActiveThemeProvider } from "@/components/active-theme";
+import PageTransition from "@/components/page-transition";
 
 export const metadata: Metadata = {
-  title: "Orcish Dashboard",
+  title: "Walor Energy",
   description:
     "A fully responsive analytics dashboard featuring dynamic charts, interactive tables, a collapsible sidebar, and a light/dark mode theme switcher. Built with modern web technologies, it ensures seamless performance across devices, offering an intuitive user interface for data visualization and exploration.",
 };
@@ -29,18 +30,16 @@ export default async function RootLayout({
         className={cn(
           "bg-background overscroll-none font-sans antialiased",
           activeThemeValue ? `theme-${activeThemeValue}` : "",
-          isScaled ? "theme-scaled" : ""
-        )}
-      >
+          isScaled ? "theme-scaled" : "",
+        )}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
-          enableColorScheme
-        >
+          enableColorScheme>
           <ActiveThemeProvider initialTheme={activeThemeValue}>
-            {children}
+            <PageTransition>{children}</PageTransition>
           </ActiveThemeProvider>
         </ThemeProvider>
       </body>

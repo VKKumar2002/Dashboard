@@ -42,28 +42,48 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/admin",
       icon: IconDashboard,
     },
     {
-      title: "Lifecycle",
-      url: "#",
-      icon: IconListDetails,
+      title: "Riders",
+      url: "/admin/riders",
+      icon: IconUsers,
     },
     {
-      title: "Analytics",
-      url: "#",
+      title: "Fleet",
+      url: "/admin/fleet",
       icon: IconChartBar,
     },
     {
-      title: "Projects",
-      url: "#",
+      title: "Stations",
+      url: "/admin/stations",
       icon: IconFolder,
     },
     {
-      title: "Team",
-      url: "#",
+      title: "Batteries",
+      url: "/admin/batteries",
       icon: IconUsers,
+    },
+    {
+      title: "Transactions",
+      url: "/admin/transactions",
+      icon: IconUsers,
+    },
+    {
+      title: "Live Tracking",
+      url: "/admin/tracking",
+      icon: IconUsers,
+    },
+    {
+      title: "Geo Fencing",
+      url: "/admin/geofencing",
+      icon: IconUsers,
+    },
+    {
+      title: "Reports",
+      url: "/admin/reports",
+      icon: IconChartBar,
     },
   ],
   navClouds: [
@@ -158,13 +178,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
-            >
+              className="data-[slot=sidebar-menu-button]:!p-1.5">
               <a href="#">
                 <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">
-                  Orcish Dashboard
-                </span>
+                <span className="text-base font-semibold">Walor Energy</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -172,7 +189,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavDocuments items={data.documents} />
+        {/* <NavDocuments items={data.documents} /> */}
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
