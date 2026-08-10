@@ -13,7 +13,22 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { MapContainer, TileLayer, Marker, Popup, Polygon } from "react-leaflet";
+
+const MapContainer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.MapContainer),
+  { ssr: false },
+);
+const TileLayer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.TileLayer),
+  { ssr: false },
+);
+const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
+  ssr: false,
+});
+const Polygon = dynamic(
+  () => import("react-leaflet").then((mod) => mod.Polygon),
+  { ssr: false },
+);
 
 const geofences = [
   {

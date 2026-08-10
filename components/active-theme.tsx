@@ -19,6 +19,15 @@ function setThemeCookie(theme: string) {
   }`;
 }
 
+function getThemeCookie() {
+  if (typeof document === "undefined") return undefined;
+
+  return document.cookie
+    .split("; ")
+    .find((row) => row.startsWith(`${COOKIE_NAME}=`))
+    ?.split("=")[1];
+}
+
 type ThemeContextType = {
   activeTheme: string;
   setActiveTheme: (theme: string) => void;
@@ -34,7 +43,7 @@ export function ActiveThemeProvider({
   initialTheme?: string;
 }) {
   const [activeTheme, setActiveTheme] = useState<string>(
-    () => initialTheme || DEFAULT_THEME
+    () => initialTheme || getThemeCookie() || DEFAULT_THEME
   );
 
   useEffect(() => {

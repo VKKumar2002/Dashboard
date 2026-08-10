@@ -1,4 +1,3 @@
-import { cookies } from "next/headers";
 import type { Metadata } from "next";
 
 import "./globals.css";
@@ -15,22 +14,17 @@ export const metadata: Metadata = {
     "A fully responsive analytics dashboard featuring dynamic charts, interactive tables, a collapsible sidebar, and a light/dark mode theme switcher. Built with modern web technologies, it ensures seamless performance across devices, offering an intuitive user interface for data visualization and exploration.",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies();
-  const activeThemeValue = cookieStore.get("active_theme")?.value;
-  const isScaled = activeThemeValue?.endsWith("-scaled");
-
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
           "bg-background overscroll-none font-sans antialiased",
-          activeThemeValue ? `theme-${activeThemeValue}` : "",
-          isScaled ? "theme-scaled" : "",
+          "theme-default",
         )}>
         <ThemeProvider
           attribute="class"
@@ -38,7 +32,7 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
           enableColorScheme>
-          <ActiveThemeProvider initialTheme={activeThemeValue}>
+          <ActiveThemeProvider>
             <PageTransition>{children}</PageTransition>
           </ActiveThemeProvider>
         </ThemeProvider>
